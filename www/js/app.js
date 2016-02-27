@@ -28,3 +28,32 @@ app.config(function (localStorageServiceProvider) {
 //     }
 //   });
 // })
+ app.controller('main', function ($scope, $ionicModal, localStorageService) { //store the entities name in a variable var taskData = 'task';
+    $scope.tasks = [];
+    
+    $scope.task = {};
+    
+    $ionicModal.fromTemplateUrl('new-task-modal.html', {
+       scope : $scope,
+       animation: 'slide-in-up' 
+    }).then(function (modal) {
+        $scope.newTaskModal = modal;
+    });
+    
+    
+    $scope.getTasks = function () {
+        //tasks from local storage
+    }
+    
+    $scope.createTask =function () {
+        // create a new task
+    }
+    
+    $scope.removeTask = function () {
+        //remove a task
+    }
+    
+    $scope.completeTask = function () {
+        //update a task as completed
+    }
+ });
