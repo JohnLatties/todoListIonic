@@ -24,8 +24,11 @@
   <body ng-app="todo-app" ng-controller="main" ng-init="getTasks()">
 
     <ion-pane>
-      <ion-header-bar class="bar-stable">
+      <ion-header-bar class="bar-dark">
         <h1 class="title">Todo App</h1>
+        <button class="button button-icon" ng-click="openTaskMocal()">
+            <i class="icon ion-compose"></i>
+        </button>
       </ion-header-bar>
       <ion-content>
           <div class="list card" ng-repeat="task in tasks track by $index">
@@ -53,5 +56,40 @@
       </ion-content>
     </ion-pane>
     <script src="lib/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script id="new-task-modal.html" type="text/ng-template">
+        <ion-modal-view>
+            <ion-header-bar class="bar-dark">
+                <h1 class="title">Create a new Task</h1>
+                <button class="button button-icon" ng-click="closeTaskmodal()">
+                    <i class="icon ion-android-close"></i>
+                 </button>
+            </ion-header-bar>
+            <ion-content>
+                <form ng-submit="createTask()">
+                    <div class="list list-inset">
+                        <label class="item item-input">
+                            <input type="text" ng-model="task.title" placeholder="Task title">
+                        </label>
+                        <label class="item item-input">
+                            <textarea ng-model="task.content" rows="5" placeholder="Task content"></textarea>
+                        </label>
+                        <ul class="list">
+                            <li class="item item-toggle">
+                                Completed?
+                                <label class="toggle toggle-balanced">
+                                    <input type="checkbox" ng-model="task.completed">
+                                   <div class="track">
+                                        <div class="handle"></div>
+                                    </div>
+                                </label>
+                            </li>
+                        </ul>
+                        <button type="submit" class="button button-block button-positive">Create Task</button>
+                    </div>
+                </form>
+            </ion-content>
+        </ion-modal-view>
+    </script>
+    
   </body>
 </html>
